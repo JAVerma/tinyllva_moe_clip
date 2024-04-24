@@ -153,7 +153,7 @@ class LlavaMetaForCausalLM(ABC):
         # image_features = self.get_model().get_vision_tower()(images)
         image_features0 = self.get_model().get_vision_tower()[0](images)
         image_features1 = self.get_model().get_vision_tower()[0](images)
-        
+        image_features=torch.cat([image_features0,image_features1],axis=-1)
         image_features = self.get_model().mm_projector(image_features)
         return image_features
 
